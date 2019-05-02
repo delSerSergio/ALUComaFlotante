@@ -19,147 +19,101 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-
-void MainWindow::on_botonSuma_clicked()
+void MainWindow::on_transformarNumeros_clicked()
 {
+
     //Leemos el primer numero
     real1 = ui->lineEdit->text();
     num1 =  real1.toFloat();
 
-    int parteEntera;
-    double parteDecimal;
+    int parteEnteraNum1;
+    double parteDecimalNum1;
 
-    parteEntera=(int)num1;
-    parteDecimal=num1-parteEntera;
+    //Dividimos la parte entera de la decimal del primer numero
+    parteEnteraNum1 = (int)num1;
+    parteDecimalNum1 = num1 - parteEnteraNum1;
 
-    cout<<"La parte entera es: "<<parteEntera<<endl;
-    cout<<"La parte decimal es: "<<parteDecimal<<endl;
+    cout<<"La parte entera del primer número es: "<<parteEnteraNum1<<endl;
+    cout<<"La parte decimal del primer número es: "<<parteDecimalNum1<<endl;
 
-    int numAux=1;
+    int resto;
+    QString binario ="";
 
-    if(parteEntera>1)
-    {
-        do
-        {
-            numAux=numAux*2;
-        }while(parteEntera>numAux);
+    while(parteEnteraNum1 >= 2){
+        //Calculamos el resto
+        resto = parteEnteraNum1%2;
 
-        numAux=numAux/2;
-
-        parteEntera=parteEntera-numAux;
-
-        cout<<"El número menor que la parte entera es: "<<numAux<<endl;
-
-         parteEntera=parteEntera-numAux;
+        if(resto == 1){//Si el resto es igual a 1 añadimos 1 a la variable binario
+            binario = "1" + binario;
+        }else{ // Si el resto es igual a 0 añadimos 0 a la variable binario
+            binario = "0" + binario;
+        }
+        //Actualizamos el valor del decimal
+        parteEnteraNum1 = parteEnteraNum1/2;
     }
 
-
-    /*
-    //PRIMER PASO: Calculamos el bit de signo
-    if(num1 > 0){ //El numero es positivo
-        signo = 0;
-    }else{ // El numero es negativo
-        signo = 1;
+    if(parteEnteraNum1 == 1){ //Si la parte entera resultante es igual a 1
+        binario = "1" + binario;
+    }else{ // Sino:
+        binario = "0" + binario;
     }
-    //SEGUNDO PASO: Normalizamos la mantisa. (se haya dividiendo por dos el entero y quedándote con el resto
-    //y multiplicando por 2 la parte fraccionaria y quedándote con los resultados enteros)
-    */
+    ui->lineEdit_3->setText(binario);
+
     //Leemos el segundo numero
     real2 = ui->lineEdit_2->text();
     num2 = real2.toFloat();
 
-    /*
-    //Calculamos el bit de signo
-    if(num2 > 0){
-        signo = 0;
-    }else{
-        signo = 1;
+    int parteEnteraNum2;
+    double parteDecimalNum2;
+
+    //Dividimos la parte entera de la decimal del primer numero
+    parteEnteraNum2 = (int)num2;
+    parteDecimalNum2 = num2 - parteEnteraNum2;
+
+    cout<<"La parte entera del segundo número es: "<<parteEnteraNum2<<endl;
+    cout<<"La parte decimal del segundo número es: "<<parteDecimalNum2<<endl;
+
+    int resto2;
+    QString binario2 ="";
+
+    while(parteEnteraNum2 >= 2){
+        //Calculamos el resto
+        resto2 = parteEnteraNum2%2;
+
+        if(resto2 == 1){//Si el resto es igual a 1 añadimos 1 a la variable binario
+            binario2 = "1" + binario2;
+        }else{ // Si el resto es igual a 0 añadimos 0 a la variable binario
+            binario2 = "0" + binario2;
+        }
+        //Actualizamos el valor del decimal
+        parteEnteraNum2 = parteEnteraNum2/2;
     }
-    */
+
+    if(parteEnteraNum2 == 1){ //Si la parte entera resultante es igual a 1
+        binario2 = "1" + binario2;
+    }else{ // Sino:
+        binario2 = "0" + binario2;
+    }
+    ui->lineEdit_4->setText(binario2);
+
+}
+
+void MainWindow::on_botonSuma_clicked()
+{
+
 }
 
 void MainWindow::on_botonResta_clicked()
 {
-    //Leemos el primer numero
-    real1 = ui->lineEdit->text();
-    num1 =  real1.toFloat();
 
-     /*
-    //Calculamos el bit de signo
-    if(num1 > 0){ 
-        signo = 0;
-    }else{ 
-        signo = 1;
-    }
-    */
-    //Leemos el segundo numero
-    real2 = ui->lineEdit_2->text();
-    num2 = real2.toFloat();
-
-     /*
-    //Calculamos el bit de signo
-    if(num2 > 0){
-        signo = 0;
-    }else{
-        signo = 1;
-    }
-    */
 }
 
 void MainWindow::on_botonProducto_clicked()
 {
-    //Leemos el primer numero
-    real1 = ui->lineEdit->text();
-    num1 =  real1.toFloat();
 
-    /*
-    //Calculamos el bit de signo
-    if(num1 > 0){ 
-        signo = 0;
-    }else{ 
-        signo = 1;
-    }
-    */
-
-    //Leemos el segundo numero
-    real2 = ui->lineEdit_2->text();
-    num2 = real2.toFloat();
-
-     /*
-    //Calculamos el bit de signo
-    if(num2 > 0){ 
-        signo = 0;
-    }else{ 
-        signo = 1;
-    }
-    */
 }
 
 void MainWindow::on_botonDivision_clicked()
 {
-    //Leemos el primer numero
-    real1 = ui->lineEdit->text();
-    num1 =  real1.toFloat();
 
-    /*
-    //Calculamos el bit de signo
-    if(num1 > 0){ 
-        signo = 0;
-    }else{ 
-        signo = 1;
-    }
-    */
-
-    //Leemos el segundo numero
-    real2 = ui->lineEdit_2->text();
-    num2 = real2.toFloat();
-
-    /*
-    //Calculamos el bit de signo
-    if(num2 > 0){
-        signo = 0;
-    }else{
-        signo = 1;
-    }
-    */
 }

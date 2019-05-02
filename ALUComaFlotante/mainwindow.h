@@ -17,6 +17,8 @@ public:
 
 private slots:
 
+    void on_transformarNumeros_clicked();
+
     void on_botonSuma_clicked();
 
     void on_botonResta_clicked();
@@ -29,8 +31,6 @@ private:
     Ui::MainWindow *ui;
     float num1, num2, resultado;
     QString real1,real2;
-    int parteEntera;
-    double parteDecimal;
 
     struct comaFlotante{
         int signo;
