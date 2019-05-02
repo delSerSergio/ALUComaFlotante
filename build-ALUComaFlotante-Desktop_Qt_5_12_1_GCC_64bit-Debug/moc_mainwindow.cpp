@@ -32,18 +32,18 @@ struct qt_meta_stringdata_MainWindow_t {
 static const qt_meta_stringdata_MainWindow_t qt_meta_stringdata_MainWindow = {
     {
 QT_MOC_LITERAL(0, 0, 10), // "MainWindow"
-QT_MOC_LITERAL(1, 11, 20), // "on_botonSuma_clicked"
-QT_MOC_LITERAL(2, 32, 0), // ""
-QT_MOC_LITERAL(3, 33, 21), // "on_botonResta_clicked"
-QT_MOC_LITERAL(4, 55, 24), // "on_botonProducto_clicked"
-QT_MOC_LITERAL(5, 80, 24), // "on_botonDivision_clicked"
-QT_MOC_LITERAL(6, 105, 29) // "on_transformarNumeros_clicked"
+QT_MOC_LITERAL(1, 11, 29), // "on_transformarNumeros_clicked"
+QT_MOC_LITERAL(2, 41, 0), // ""
+QT_MOC_LITERAL(3, 42, 20), // "on_botonSuma_clicked"
+QT_MOC_LITERAL(4, 63, 21), // "on_botonResta_clicked"
+QT_MOC_LITERAL(5, 85, 24), // "on_botonProducto_clicked"
+QT_MOC_LITERAL(6, 110, 24) // "on_botonDivision_clicked"
 
     },
-    "MainWindow\0on_botonSuma_clicked\0\0"
-    "on_botonResta_clicked\0on_botonProducto_clicked\0"
-    "on_botonDivision_clicked\0"
-    "on_transformarNumeros_clicked"
+    "MainWindow\0on_transformarNumeros_clicked\0"
+    "\0on_botonSuma_clicked\0on_botonResta_clicked\0"
+    "on_botonProducto_clicked\0"
+    "on_botonDivision_clicked"
 };
 #undef QT_MOC_LITERAL
 
@@ -83,11 +83,11 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         auto *_t = static_cast<MainWindow *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->on_botonSuma_clicked(); break;
-        case 1: _t->on_botonResta_clicked(); break;
-        case 2: _t->on_botonProducto_clicked(); break;
-        case 3: _t->on_botonDivision_clicked(); break;
-        case 4: _t->on_transformarNumeros_clicked(); break;
+        case 0: _t->on_transformarNumeros_clicked(); break;
+        case 1: _t->on_botonSuma_clicked(); break;
+        case 2: _t->on_botonResta_clicked(); break;
+        case 3: _t->on_botonProducto_clicked(); break;
+        case 4: _t->on_botonDivision_clicked(); break;
         default: ;
         }
     }

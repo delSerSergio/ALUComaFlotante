@@ -39,6 +39,7 @@ void MainWindow::on_transformarNumeros_clicked()
     int resto;
     QString binario ="";
 
+    //Calculamos el binario de la parte entera
     while(parteEnteraNum1 >= 2){
         //Calculamos el resto
         resto = parteEnteraNum1%2;
@@ -48,7 +49,7 @@ void MainWindow::on_transformarNumeros_clicked()
         }else{ // Si el resto es igual a 0 añadimos 0 a la variable binario
             binario = "0" + binario;
         }
-        //Actualizamos el valor del decimal
+        //Actualizamos el valor del entero
         parteEnteraNum1 = parteEnteraNum1/2;
     }
 
@@ -57,7 +58,30 @@ void MainWindow::on_transformarNumeros_clicked()
     }else{ // Sino:
         binario = "0" + binario;
     }
-    ui->lineEdit_3->setText(binario);
+
+    int restoDecimal;
+    QString binarioDecimal ="";
+
+    //Calculamos el binario de la parte decimal
+    do{
+        restoDecimal = (int)parteDecimalNum1*2;
+
+        if(restoDecimal == 1){
+            binarioDecimal = "1" + binarioDecimal;
+        }else{
+            binarioDecimal = "0" + binarioDecimal;
+        }
+        //Actualizamos el valor del decimal
+        parteDecimalNum1 = parteDecimalNum1*2;
+    }while(parteDecimalNum1 != 0);
+
+    if((int)parteDecimalNum1 == 1){ //Si la parte entera resultante es igual a 1
+        binarioDecimal = "1" + binarioDecimal;
+    }else{ // Sino:
+        binarioDecimal = "0" + binarioDecimal;
+    }
+
+    ui->lineEdit_3->setText(binario + "." + binarioDecimal);
 
     //Leemos el segundo numero
     real2 = ui->lineEdit_2->text();
@@ -85,7 +109,7 @@ void MainWindow::on_transformarNumeros_clicked()
         }else{ // Si el resto es igual a 0 añadimos 0 a la variable binario
             binario2 = "0" + binario2;
         }
-        //Actualizamos el valor del decimal
+        //Actualizamos el valor del entero
         parteEnteraNum2 = parteEnteraNum2/2;
     }
 
