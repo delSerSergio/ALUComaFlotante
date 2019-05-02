@@ -29,6 +29,8 @@ private:
     Ui::MainWindow *ui;
     float num1, num2, resultado;
     QString real1,real2;
+    int parteEntera;
+    double parteDecimal;
 
     struct comaFlotante{
         int signo;
