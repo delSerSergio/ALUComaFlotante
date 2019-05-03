@@ -24,7 +24,7 @@ void MainWindow::on_transformarNumeros_clicked()
 
     //Leemos el primer numero
     real1 = ui->lineEdit->text();
-    num1 =  real1.toFloat();
+    num1 =  real1.toDouble();
 
     int parteEnteraNum1;
     double parteDecimalNum1;
@@ -60,20 +60,24 @@ void MainWindow::on_transformarNumeros_clicked()
     }
 
     int restoDecimal;
+    double aux;
     QString binarioDecimal ="";
 
     //Calculamos el binario de la parte decimal
-    do{
-        restoDecimal = (int)parteDecimalNum1*2;
+    while(parteDecimalNum1 > 0 && parteDecimalNum1 < 2){
+
+        aux = parteDecimalNum1*2;
+
+        restoDecimal = (int)aux;
 
         if(restoDecimal == 1){
             binarioDecimal = "1" + binarioDecimal;
         }else{
             binarioDecimal = "0" + binarioDecimal;
         }
-        //Actualizamos el valor del decimal
-        parteDecimalNum1 = parteDecimalNum1*2;
-    }while(parteDecimalNum1 != 0);
+
+        parteDecimalNum1 = aux - (int)aux ;
+    }
 
     if((int)parteDecimalNum1 == 1){ //Si la parte entera resultante es igual a 1
         binarioDecimal = "1" + binarioDecimal;
@@ -85,7 +89,7 @@ void MainWindow::on_transformarNumeros_clicked()
 
     //Leemos el segundo numero
     real2 = ui->lineEdit_2->text();
-    num2 = real2.toFloat();
+    num2 = real2.toDouble();
 
     int parteEnteraNum2;
     double parteDecimalNum2;
@@ -118,7 +122,33 @@ void MainWindow::on_transformarNumeros_clicked()
     }else{ // Sino:
         binario2 = "0" + binario2;
     }
-    ui->lineEdit_4->setText(binario2);
+
+    int restoDecimal2;
+    double aux2;
+    QString binarioDecimal2 ="";
+
+    //Calculamos el binario de la parte decimal
+    while(parteDecimalNum2 > 0 && parteDecimalNum2 < 2){
+
+        aux2 = parteDecimalNum2*2;
+
+        restoDecimal2 = (int)aux2;
+
+        if(restoDecimal2 == 1){
+            binarioDecimal2 = "1" + binarioDecimal2;
+        }else{
+            binarioDecimal2 = "0" + binarioDecimal2;
+        }
+
+        parteDecimalNum2 = aux2 - (int)aux2 ;
+    }
+
+    if((int)parteDecimalNum2 == 1){ //Si la parte entera resultante es igual a 1
+        binarioDecimal2 = "1" + binarioDecimal2;
+    }else{ // Sino:
+        binarioDecimal2 = "0" + binarioDecimal2;
+    }
+    ui->lineEdit_4->setText(binario2 + "." + binarioDecimal2);
 
 }
 

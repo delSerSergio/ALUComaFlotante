@@ -29,7 +29,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    float num1, num2, resultado;
+    double num1, num2, resultado;
     QString real1,real2;
 
     struct comaFlotante{
