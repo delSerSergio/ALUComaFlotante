@@ -22,133 +22,139 @@ MainWindow::~MainWindow()
 void MainWindow::on_transformarNumeros_clicked()
 {
 
+    //PRIMER NUMERO
+
     //Leemos el primer numero
     real1 = ui->lineEdit->text();
-    num1 =  real1.toDouble();
+    num1 = real1.toDouble();
 
-    int parteEnteraNum1;
-    double parteDecimalNum1;
+    IEEE745 numero2;
 
-    //Dividimos la parte entera de la decimal del primer numero
-    parteEnteraNum1 = (int)num1;
-    parteDecimalNum1 = num1 - parteEnteraNum1;
+    numero2.num = num1;
 
-    cout<<"La parte entera del primer número es: "<<parteEnteraNum1<<endl;
-    cout<<"La parte decimal del primer número es: "<<parteDecimalNum1<<endl;
+    cout<< "La representacion en IEEE 754 de " << num1 << "is : \n";
+    cout<< numero2.camposComaFlotante.signo << " | ";
 
-    int resto;
-    QString binario ="";
+    int resto3;
+    string binario3 ="";
 
-    //Calculamos el binario de la parte entera
-    while(parteEnteraNum1 >= 2){
-        //Calculamos el resto
-        resto = parteEnteraNum1%2;
+    while(numero2.camposComaFlotante.exponente >= 2){
 
-        if(resto == 1){//Si el resto es igual a 1 añadimos 1 a la variable binario
-            binario = "1" + binario;
-        }else{ // Si el resto es igual a 0 añadimos 0 a la variable binario
-            binario = "0" + binario;
-        }
-        //Actualizamos el valor del entero
-        parteEnteraNum1 = parteEnteraNum1/2;
-    }
+        resto3 = (numero2.camposComaFlotante.exponente)%2;
 
-    if(parteEnteraNum1 == 1){ //Si la parte entera resultante es igual a 1
-        binario = "1" + binario;
-    }else{ // Sino:
-        binario = "0" + binario;
-    }
-
-    int restoDecimal;
-    double aux;
-    QString binarioDecimal ="";
-
-    //Calculamos el binario de la parte decimal
-    while(parteDecimalNum1 > 0 && parteDecimalNum1 < 2){
-
-        aux = parteDecimalNum1*2;
-
-        restoDecimal = (int)aux;
-
-        if(restoDecimal == 1){
-            binarioDecimal = "1" + binarioDecimal;
+        if(resto3 == 1){
+            binario3 = "1" + binario3;
         }else{
-            binarioDecimal = "0" + binarioDecimal;
+            binario3 = "0" + binario3;
         }
-
-        parteDecimalNum1 = aux - (int)aux ;
+        numero2.camposComaFlotante.exponente = (numero2.camposComaFlotante.exponente )/2;
     }
 
-    if((int)parteDecimalNum1 == 1){ //Si la parte entera resultante es igual a 1
-        binarioDecimal = "1" + binarioDecimal;
-    }else{ // Sino:
-        binarioDecimal = "0" + binarioDecimal;
+    if(numero2.camposComaFlotante.exponente  == 1){
+        binario3 = "1" + binario3;
+    }else{
+        binario3 = "0" + binario3;
     }
 
-    ui->lineEdit_3->setText(binario + "." + binarioDecimal);
+    cout<< binario3;
+    cout<< " | ";
+
+    int resto4;
+    string binario4 ="";
+
+    while(numero2.camposComaFlotante.mantisa >= 2){
+
+        resto4 = (numero2.camposComaFlotante.mantisa)%2;
+
+        if(resto4 == 1){
+            binario4 = "1" + binario4;
+        }else{
+            binario4 = "0" + binario4;
+        }
+        numero2.camposComaFlotante.mantisa = (numero2.camposComaFlotante.mantisa)/2;
+    }
+
+    if(numero2.camposComaFlotante.mantisa  == 1){
+        binario4 = "1" + binario4;
+    }else{
+        binario4 = "0" + binario4;
+    }
+
+    cout<< binario4;
+    cout<< "\n" <<endl;
+
+    QString impr1 = QString::number(numero2.camposComaFlotante.signo);
+    QString impr2 = QString::fromStdString(binario3);
+    QString impr3 = QString::fromStdString(binario4);
+
+    ui->lineEdit_3->setText(impr1 + " | " + impr2 + " | " + impr3);
+
+    //SEGUNDO NUMERO
 
     //Leemos el segundo numero
     real2 = ui->lineEdit_2->text();
     num2 = real2.toDouble();
 
-    int parteEnteraNum2;
-    double parteDecimalNum2;
+    IEEE745 numero1;
 
-    //Dividimos la parte entera de la decimal del primer numero
-    parteEnteraNum2 = (int)num2;
-    parteDecimalNum2 = num2 - parteEnteraNum2;
+    numero1.num = num2;
 
-    cout<<"La parte entera del segundo número es: "<<parteEnteraNum2<<endl;
-    cout<<"La parte decimal del segundo número es: "<<parteDecimalNum2<<endl;
+    cout<< "La representacion en IEEE 754 de " << num2 << "is : \n";
+    cout<< numero1.camposComaFlotante.signo << " | ";
 
-    int resto2;
-    QString binario2 ="";
+    int resto;
+    string binario ="";
 
-    while(parteEnteraNum2 >= 2){
-        //Calculamos el resto
-        resto2 = parteEnteraNum2%2;
+    while(numero1.camposComaFlotante.exponente >= 2){
 
-        if(resto2 == 1){//Si el resto es igual a 1 añadimos 1 a la variable binario
-            binario2 = "1" + binario2;
-        }else{ // Si el resto es igual a 0 añadimos 0 a la variable binario
-            binario2 = "0" + binario2;
+        resto = (numero1.camposComaFlotante.exponente)%2;
+
+        if(resto == 1){
+            binario = "1" + binario;
+        }else{
+            binario = "0" + binario;
         }
-        //Actualizamos el valor del entero
-        parteEnteraNum2 = parteEnteraNum2/2;
+        numero1.camposComaFlotante.exponente = (numero1.camposComaFlotante.exponente )/2;
     }
 
-    if(parteEnteraNum2 == 1){ //Si la parte entera resultante es igual a 1
+    if(numero1.camposComaFlotante.exponente  == 1){
+        binario = "1" + binario;
+    }else{
+        binario = "0" + binario;
+    }
+
+    cout<< binario;
+    cout<< " | ";
+
+    int resto2;
+    string binario2 ="";
+
+    while(numero1.camposComaFlotante.mantisa >= 2){
+
+        resto2 = (numero1.camposComaFlotante.mantisa)%2;
+
+        if(resto2 == 1){
+            binario2 = "1" + binario2;
+        }else{
+            binario2 = "0" + binario2;
+        }
+        numero1.camposComaFlotante.mantisa = (numero1.camposComaFlotante.mantisa)/2;
+    }
+
+    if(numero1.camposComaFlotante.mantisa  == 1){
         binario2 = "1" + binario2;
-    }else{ // Sino:
+    }else{
         binario2 = "0" + binario2;
     }
 
-    int restoDecimal2;
-    double aux2;
-    QString binarioDecimal2 ="";
+    cout<< binario2;
+    cout<< "\n" <<endl;
 
-    //Calculamos el binario de la parte decimal
-    while(parteDecimalNum2 > 0 && parteDecimalNum2 < 2){
+    QString impr4 = QString::number(numero1.camposComaFlotante.signo);
+    QString impr5 = QString::fromStdString(binario);
+    QString impr6 = QString::fromStdString(binario2);
 
-        aux2 = parteDecimalNum2*2;
-
-        restoDecimal2 = (int)aux2;
-
-        if(restoDecimal2 == 1){
-            binarioDecimal2 = "1" + binarioDecimal2;
-        }else{
-            binarioDecimal2 = "0" + binarioDecimal2;
-        }
-
-        parteDecimalNum2 = aux2 - (int)aux2 ;
-    }
-
-    if((int)parteDecimalNum2 == 1){ //Si la parte entera resultante es igual a 1
-        binarioDecimal2 = "1" + binarioDecimal2;
-    }else{ // Sino:
-        binarioDecimal2 = "0" + binarioDecimal2;
-    }
-    ui->lineEdit_4->setText(binario2 + "." + binarioDecimal2);
+    ui->lineEdit_4->setText(impr4 + " | " + impr5 + " | " + impr6);
 
 }
 

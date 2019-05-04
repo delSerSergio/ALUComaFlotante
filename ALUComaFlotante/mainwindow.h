@@ -15,6 +15,19 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    typedef union {
+
+        float num;
+        unsigned int entero;
+        struct
+        {
+            unsigned int mantisa : 23;
+            unsigned int exponente : 8;
+            unsigned int signo : 1;
+
+        } camposComaFlotante;
+    } IEEE745;
+
 private slots:
 
     void on_transformarNumeros_clicked();
@@ -32,11 +45,6 @@ private:
     double num1, num2, resultado;
     QString real1,real2;
 
-    struct comaFlotante{
-        int signo;
-        long exponente;
-        long mantisa;
-    };
 };
 
 #endif // MAINWINDOW_H

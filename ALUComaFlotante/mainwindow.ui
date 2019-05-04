@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>531</width>
-    <height>513</height>
+    <width>692</width>
+    <height>514</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,7 +17,7 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>40</x>
+      <x>90</x>
       <y>30</y>
       <width>191</width>
       <height>17</height>
@@ -30,7 +30,7 @@
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>290</x>
+      <x>340</x>
       <y>30</y>
       <width>211</width>
       <height>17</height>
@@ -43,7 +43,7 @@
    <widget class="QLineEdit" name="lineEdit">
     <property name="geometry">
      <rect>
-      <x>40</x>
+      <x>90</x>
       <y>60</y>
       <width>181</width>
       <height>25</height>
@@ -53,7 +53,7 @@
    <widget class="QLineEdit" name="lineEdit_2">
     <property name="geometry">
      <rect>
-      <x>290</x>
+      <x>340</x>
       <y>60</y>
       <width>181</width>
       <height>25</height>
@@ -65,25 +65,25 @@
      <rect>
       <x>30</x>
       <y>150</y>
-      <width>161</width>
+      <width>221</width>
       <height>17</height>
      </rect>
     </property>
     <property name="text">
-     <string>Número transformado:</string>
+     <string>Primer número transformado:</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_4">
     <property name="geometry">
      <rect>
-      <x>280</x>
+      <x>350</x>
       <y>150</y>
-      <width>161</width>
+      <width>231</width>
       <height>17</height>
      </rect>
     </property>
     <property name="text">
-     <string>Número transformado:</string>
+     <string>Segundo número transformado:</string>
     </property>
    </widget>
    <widget class="QLineEdit" name="lineEdit_3">
@@ -91,7 +91,7 @@
      <rect>
       <x>30</x>
       <y>180</y>
-      <width>181</width>
+      <width>301</width>
       <height>25</height>
      </rect>
     </property>
@@ -99,9 +99,9 @@
    <widget class="QLineEdit" name="lineEdit_4">
     <property name="geometry">
      <rect>
-      <x>280</x>
+      <x>350</x>
       <y>180</y>
-      <width>181</width>
+      <width>311</width>
       <height>25</height>
      </rect>
     </property>
@@ -109,7 +109,7 @@
    <widget class="QLabel" name="label_5">
     <property name="geometry">
      <rect>
-      <x>210</x>
+      <x>260</x>
       <y>240</y>
       <width>91</width>
       <height>17</height>
@@ -122,7 +122,7 @@
    <widget class="QPushButton" name="botonSuma">
     <property name="geometry">
      <rect>
-      <x>40</x>
+      <x>90</x>
       <y>270</y>
       <width>89</width>
       <height>25</height>
@@ -135,7 +135,7 @@
    <widget class="QPushButton" name="botonResta">
     <property name="geometry">
      <rect>
-      <x>160</x>
+      <x>210</x>
       <y>270</y>
       <width>89</width>
       <height>25</height>
@@ -148,7 +148,7 @@
    <widget class="QPushButton" name="botonProducto">
     <property name="geometry">
      <rect>
-      <x>280</x>
+      <x>330</x>
       <y>270</y>
       <width>89</width>
       <height>25</height>
@@ -161,7 +161,7 @@
    <widget class="QPushButton" name="botonDivision">
     <property name="geometry">
      <rect>
-      <x>400</x>
+      <x>450</x>
       <y>270</y>
       <width>89</width>
       <height>25</height>
@@ -174,7 +174,7 @@
    <widget class="QLabel" name="label_6">
     <property name="geometry">
      <rect>
-      <x>210</x>
+      <x>260</x>
       <y>310</y>
       <width>81</width>
       <height>17</height>
@@ -187,7 +187,7 @@
    <widget class="QLineEdit" name="lineEdit_5">
     <property name="geometry">
      <rect>
-      <x>170</x>
+      <x>220</x>
       <y>330</y>
       <width>181</width>
       <height>25</height>
@@ -197,7 +197,7 @@
    <widget class="QLabel" name="label_7">
     <property name="geometry">
      <rect>
-      <x>170</x>
+      <x>220</x>
       <y>360</y>
       <width>181</width>
       <height>17</height>
@@ -210,7 +210,7 @@
    <widget class="QLineEdit" name="lineEdit_6">
     <property name="geometry">
      <rect>
-      <x>170</x>
+      <x>220</x>
       <y>390</y>
       <width>181</width>
       <height>25</height>
@@ -220,7 +220,7 @@
    <widget class="QPushButton" name="transformarNumeros">
     <property name="geometry">
      <rect>
-      <x>140</x>
+      <x>190</x>
       <y>110</y>
       <width>221</width>
       <height>25</height>
@@ -236,7 +236,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>531</width>
+     <width>692</width>
      <height>22</height>
     </rect>
    </property>
