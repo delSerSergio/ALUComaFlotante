@@ -25,7 +25,7 @@ public:
             unsigned int signo : 1;
 
         } camposComaFlotante;
-    } IEEE745;
+    } IEEE754;
 
 private slots:
 
@@ -47,6 +47,17 @@ private:
     Ui::MainWindow *ui;
     double num1, num2, resultado;
     QString real1,real2;
+
+    //long numero1, numero2;
+    IEEE754 numero1, numero2;
+
+    int P, g, r, st, n;
+    bool operandosIntercambiados;
+    bool complementadoP;
+
+    int bitDeGuarda;
+    int bitDeRedondeo;
+    int bitSticky;
 
 };
 
