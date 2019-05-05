@@ -32,7 +32,7 @@ void MainWindow::on_transformarNumeros_clicked()
 
     numero2.num = num1;
 
-    cout<< "La representacion en IEEE 754 de " << num1 << "is : \n";
+    cout<< "La representacion en IEEE 754 de " << num1 << " es : \n";
     cout<< numero2.camposComaFlotante.signo << " | ";
 
     int resto3;
@@ -99,7 +99,7 @@ void MainWindow::on_transformarNumeros_clicked()
 
     numero1.num = num2;
 
-    cout<< "La representacion en IEEE 754 de " << num2 << "is : \n";
+    cout<< "La representacion en IEEE 754 de " << num2 << " es : \n";
     cout<< numero1.camposComaFlotante.signo << " | ";
 
     int resto;
@@ -160,20 +160,79 @@ void MainWindow::on_transformarNumeros_clicked()
 
 void MainWindow::on_botonSuma_clicked()
 {
+    //Leemos el primer numero
+    real1 = ui->lineEdit->text();
+    num1 = real1.toDouble();
+
+    //Leemos el segundo numero
+    real2 = ui->lineEdit_2->text();
+    num2 = real2.toDouble();
+
+    double suma = num1 + num2;
+
+    ui->lineEdit_7->setText(QString::number(suma));
 
 }
 
 void MainWindow::on_botonResta_clicked()
 {
+    //Leemos el primer numero
+    real1 = ui->lineEdit->text();
+    num1 = real1.toDouble();
+
+    //Leemos el segundo numero
+    real2 = ui->lineEdit_2->text();
+    num2 = real2.toDouble();
+
+    double resta = num1 - num2;
+
+    ui->lineEdit_7->setText(QString::number(resta));
 
 }
 
 void MainWindow::on_botonProducto_clicked()
 {
+    //Leemos el primer numero
+    real1 = ui->lineEdit->text();
+    num1 = real1.toDouble();
+
+    //Leemos el segundo numero
+    real2 = ui->lineEdit_2->text();
+    num2 = real2.toDouble();
+
+    double multiplicacion = num1 * num2;
+
+    ui->lineEdit_7->setText(QString::number(multiplicacion));
 
 }
 
 void MainWindow::on_botonDivision_clicked()
 {
+    //Leemos el primer numero
+    real1 = ui->lineEdit->text();
+    num1 = real1.toDouble();
 
+    //Leemos el segundo numero
+    real2 = ui->lineEdit_2->text();
+    num2 = real2.toDouble();
+
+    double division = num1 / num2;
+
+    ui->lineEdit_7->setText(QString::number(division));
+
+}
+
+void MainWindow::on_restablecer_clicked()
+{
+    ui->lineEdit->clear();
+    ui->lineEdit_2->clear();
+    ui->lineEdit_3->clear();
+    ui->lineEdit_4->clear();
+    ui->lineEdit_6->clear();
+    ui->lineEdit_7->clear();
+}
+
+void MainWindow::on_salir_clicked()
+{
+    this->close();
 }

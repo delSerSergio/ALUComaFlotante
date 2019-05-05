@@ -18,7 +18,6 @@ public:
     typedef union {
 
         float num;
-        unsigned int entero;
         struct
         {
             unsigned int mantisa : 23;
@@ -39,6 +38,10 @@ private slots:
     void on_botonProducto_clicked();
 
     void on_botonDivision_clicked();
+
+    void on_restablecer_clicked();
+
+    void on_salir_clicked();
 
 private:
     Ui::MainWindow *ui;
