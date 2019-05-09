@@ -4,6 +4,7 @@
 #include <QLineEdit>
 #include <iostream>
 #include <stdio.h>
+#include <unistd.h>
 
 using namespace std;
 
@@ -24,68 +25,72 @@ void MainWindow::on_transformarNumeros_clicked()
 
     //PRIMER NUMERO
 
-    //Leemos el primer numero
+    //Leemos el segundo numero
     real1 = ui->lineEdit->text();
     num1 = real1.toDouble();
 
-    IEEE754 numero1;
+    union IEEE754 numero1;
 
     numero1.num = num1;
+
+    cout<<"El signo del número 2: "<<numero1.camposComaFlotante.signo<<endl;
+    cout<<"El exponente del número 2: "<<numero1.camposComaFlotante.exponente<<endl;
+    cout<<"La mantisa del número 2 : "<<numero1.camposComaFlotante.mantisa<<endl;
 
     cout<< "La representacion en IEEE 754 de " << num1 << " es : \n";
     cout<< numero1.camposComaFlotante.signo << " | ";
 
-    int resto1;
-    string binario1 ="";
+    int resto;
+    string binario ="";
 
     while(numero1.camposComaFlotante.exponente >= 2){
 
-        resto1 = (numero1.camposComaFlotante.exponente)%2;
+        resto = (numero1.camposComaFlotante.exponente)%2;
+
+        if(resto == 1){
+            binario = "1" + binario;
+        }else{
+            binario = "0" + binario;
+        }
+        numero1.camposComaFlotante.exponente = (numero1.camposComaFlotante.exponente )/2;
+    }
+
+    if(numero1.camposComaFlotante.exponente  == 1){
+        binario = "1" + binario;
+    }else{
+        binario = "0" + binario;
+    }
+
+    cout<< binario;
+    cout<< " | ";
+
+    int resto1;
+    string binario1 ="";
+
+    while(numero1.camposComaFlotante.mantisa >= 2){
+
+        resto1 = (numero1.camposComaFlotante.mantisa)%2;
 
         if(resto1 == 1){
             binario1 = "1" + binario1;
         }else{
             binario1 = "0" + binario1;
         }
-        numero1.camposComaFlotante.exponente = (numero1.camposComaFlotante.exponente )/2;
+        numero1.camposComaFlotante.mantisa = (numero1.camposComaFlotante.mantisa)/2;
     }
 
-    if(numero1.camposComaFlotante.exponente  == 1){
+    if(numero1.camposComaFlotante.mantisa  == 1){
         binario1 = "1" + binario1;
     }else{
         binario1 = "0" + binario1;
     }
 
     cout<< binario1;
-    cout<< " | ";
-
-    int resto2;
-    string binario2 ="";
-
-    while(numero1.camposComaFlotante.mantisa >= 2){
-
-        resto2 = (numero1.camposComaFlotante.mantisa)%2;
-
-        if(resto2 == 1){
-            binario2 = "1" + binario2;
-        }else{
-            binario2 = "0" + binario2;
-        }
-        numero1.camposComaFlotante.mantisa = (numero1.camposComaFlotante.mantisa)/2;
-    }
-
-    if(numero1.camposComaFlotante.mantisa  == 1){
-        binario2 = "1" + binario2;
-    }else{
-        binario2 = "0" + binario2;
-    }
-
-    cout<< binario2;
     cout<< "\n" <<endl;
 
     QString impr1 = QString::number(numero1.camposComaFlotante.signo);
-    QString impr2 = QString::fromStdString(binario1);
-    QString impr3 = QString::fromStdString(binario2);
+    QString impr2 = QString::fromStdString(binario);
+    QString impr3 = QString::fromStdString(binario1);
 
     ui->lineEdit_3->setText(impr1 + " | " + impr2 + " | " + impr3);
 
@@ -95,9 +100,13 @@ void MainWindow::on_transformarNumeros_clicked()
     real2 = ui->lineEdit_2->text();
     num2 = real2.toDouble();
 
-    IEEE754 numero2;
+    union IEEE754 numero2;
 
     numero2.num = num2;
+
+    cout<<"El signo del número 2: "<<numero2.camposComaFlotante.signo<<endl;
+    cout<<"El exponente del número 2: "<<numero2.camposComaFlotante.exponente<<endl;
+    cout<<"La mantisa del número 2 : "<<numero2.camposComaFlotante.mantisa<<endl;
 
     cout<< "La representacion en IEEE 754 de " << num2 << " es : \n";
     cout<< numero2.camposComaFlotante.signo << " | ";
@@ -155,37 +164,70 @@ void MainWindow::on_transformarNumeros_clicked()
     QString impr6 = QString::fromStdString(binario4);
 
     ui->lineEdit_4->setText(impr4 + " | " + impr5 + " | " + impr6);
-
 }
 
 void MainWindow::on_botonSuma_clicked()
 {
     cout<<"Inicializamos el algoritmo de la suma: \n"<<endl;
 
-    double suma = num1 + num2;
+    union IEEE754 numero1;
+    numero1.num=num1;
 
-    ui->lineEdit_7->setText(QString::number(suma));
+    union IEEE754 numero2;
+    numero2.num=num2;
+
 
     int P, g, r, st, n;
     bool operandosIntercambiados=false;
     bool complementadoP=false;
 
-    if(numero1.camposComaFlotante.exponente<numero2.camposComaFlotante.exponente)
+
+
+    cout<<"El signo del número 1: "<<numero1.camposComaFlotante.signo<<endl;
+    cout<<"El exponente del número 1: "<<numero1.camposComaFlotante.exponente<<endl;
+    cout<<"La mantisa del número 1 : "<<numero1.camposComaFlotante.mantisa<<endl;
+
+    cout<<"El signo del número 2: "<<numero2.camposComaFlotante.signo<<endl;
+    cout<<"El exponente del número 2: "<<numero2.camposComaFlotante.exponente<<endl;
+    cout<<"La mantisa del número 2 : "<<numero2.camposComaFlotante.mantisa<<endl;
+/*
+
+   if(numero1.camposComaFlotante.exponente<numero2.camposComaFlotante.exponente)
     {
         IEEE754 aux;
         aux=numero1;
         numero1=numero2;
         numero2=aux;
         operandosIntercambiados=true;
+
+       //cout<<"Después del cambio, el número 1 es: "<<numero1<<endl;
+       //cout<<"Después del cambio, el número 2 es: "<<numero2<<endl;
     }
 
     //Asignamos
-    //e=numero1.camposComaFlotante.exponente;
-    //d=numero1.camposComaFlotante.exponente-numero2.camposComaFlotante.exponente);
+    int e, d;
+    e=numero1.camposComaFlotante.exponente;
+    d=numero1.camposComaFlotante.exponente-numero2.camposComaFlotante.exponente;
 
     if(numero1.camposComaFlotante.signo != numero2.camposComaFlotante.signo)
     {
-        //m=complemento2
+        cout<<"La longitud de la mantisa del número 2: "<<binario4<<endl;
+
+        int i;
+        for(i=binario4.size();i=0;i--)
+        {
+            if(binario4[i]=1)
+            {
+                do
+                {
+                    if((binario4[i-1])=1)
+                        binario4[i-1]=0;
+
+                    if((binario4[i-1])=0)
+                        binario4[i-1]=1;
+                }while(binario4[i]>0);
+            }
+        }
     }
 
      //P=m;
@@ -202,7 +244,7 @@ void MainWindow::on_botonSuma_clicked()
     {
         //Desplazar P a la derecha d bits introduciendo 0 por la izquierda.
     }
-
+    */
 }
 
 void MainWindow::on_botonResta_clicked()
