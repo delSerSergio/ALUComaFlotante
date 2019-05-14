@@ -168,20 +168,11 @@ void MainWindow::on_transformarNumeros_clicked()
 
 void MainWindow::on_botonSuma_clicked()
 {
-    cout<<"Inicializamos el algoritmo de la suma: \n"<<endl;
-
     union IEEE754 numero1;
     numero1.num=num1;
 
     union IEEE754 numero2;
     numero2.num=num2;
-
-
-    int P, g, r, st, n;
-    bool operandosIntercambiados=false;
-    bool complementadoP=false;
-
-
 
     cout<<"El signo del número 1: "<<numero1.camposComaFlotante.signo<<endl;
     cout<<"El exponente del número 1: "<<numero1.camposComaFlotante.exponente<<endl;
@@ -190,61 +181,125 @@ void MainWindow::on_botonSuma_clicked()
     cout<<"El signo del número 2: "<<numero2.camposComaFlotante.signo<<endl;
     cout<<"El exponente del número 2: "<<numero2.camposComaFlotante.exponente<<endl;
     cout<<"La mantisa del número 2 : "<<numero2.camposComaFlotante.mantisa<<endl;
-/*
 
-   if(numero1.camposComaFlotante.exponente<numero2.camposComaFlotante.exponente)
-    {
+    cout<<"Inicializamos el algoritmo de la suma: \n"<<endl;
+
+    //PASO 1
+    int P = 0, g = 0, r = 0, st = 0, n = 23;
+    bool operandos_Intercambiados = false;
+    bool complementado_P = false;
+
+    //PASO 2
+    if(numero1.camposComaFlotante.exponente < numero2.camposComaFlotante.exponente){
         IEEE754 aux;
-        aux=numero1;
-        numero1=numero2;
-        numero2=aux;
-        operandosIntercambiados=true;
+        aux = numero1;
+        numero1 = numero2;
+        numero2 = aux;
+        operandosIntercambiados = true;
 
-       //cout<<"Después del cambio, el número 1 es: "<<numero1<<endl;
-       //cout<<"Después del cambio, el número 2 es: "<<numero2<<endl;
+       cout<<"Después del cambio, el signo del número 1 es: "<<numero1.camposComaFlotante.signo<<endl;
+       cout<<"Después del cambio, el exponente del número 1 es: "<<numero1.camposComaFlotante.exponente<<endl;
+       cout<<"Después del cambio, la mantisa del número 1 es: "<<numero1.camposComaFlotante.mantisa<<endl;
+       cout<<"Después del cambio, el signo del número 2 es: "<<numero2.camposComaFlotante.signo<<endl;
+       cout<<"Después del cambio, el exponente del número 2 es: "<<numero2.camposComaFlotante.exponente<<endl;
+       cout<<"Después del cambio, la mantisa del número 2 es: "<<numero2.camposComaFlotante.mantisa<<endl;
     }
 
-    //Asignamos
+    //PASO 3
     int e, d;
-    e=numero1.camposComaFlotante.exponente;
-    d=numero1.camposComaFlotante.exponente-numero2.camposComaFlotante.exponente;
+    e = numero1.camposComaFlotante.exponente;
+    d = numero1.camposComaFlotante.exponente - numero2.camposComaFlotante.exponente;
+    //Siempre se verifica que d >= 0
 
-    if(numero1.camposComaFlotante.signo != numero2.camposComaFlotante.signo)
-    {
-        cout<<"La longitud de la mantisa del número 2: "<<binario4<<endl;
+    //PASO 4
+    if(numero1.camposComaFlotante.signo != numero2.camposComaFlotante.signo){
 
-        int i;
-        for(i=binario4.size();i=0;i--)
-        {
-            if(binario4[i]=1)
-            {
-                do
-                {
-                    if((binario4[i-1])=1)
-                        binario4[i-1]=0;
-
-                    if((binario4[i-1])=0)
-                        binario4[i-1]=1;
-                }while(binario4[i]>0);
+        for(int i = binario4.size(); i >= 0; i--){
+            if(binario4[i] = 1){
+                do{
+                    if((binario4[i-1]) = 1){
+                        binario4[i-1] = 0;
+                    }
+                    if((binario4[i-1]) = 0){
+                        binario4[i-1] = 1;
+                    }
+                }while(binario4[i] > 0);
             }
         }
+        cout<<"La mantisa en complemento a 2 es: " << binario4<<endl;
+
     }
 
-     //P=m;
+    //PASO 5
+     P = numero2.camposComaFlotante.mantisa;
 
+     //PASO 6
     int bitDeGuarda;
     int bitDeRedondeo;
     int bitSticky;
 
-    if(numero1.camposComaFlotante.signo != numero2.camposComaFlotante.signo)
-    {
+    //PASO 7
+    if(numero1.camposComaFlotante.signo != numero2.camposComaFlotante.signo){
         //Desplazar P a la derecha d bits introduciendo 1 por la izquierda.
     }
-    else
-    {
+    else{
         //Desplazar P a la derecha d bits introduciendo 0 por la izquierda.
     }
-    */
+
+    //PASO 8
+    P = numero1.camposComaFlotante.mantisa + P;
+    int C1;
+    //C1 = ACARREO;
+
+    //PASO 9
+    if((numero1.camposComaFlotante.signo != numero2.camposComaFlotante.signo) && (C1 = 0)){
+        //P = COMPLEMENTO_2(P);
+        complementado_P = true;
+    }
+
+    //PASO 10
+    if((numero1.camposComaFlotante.signo != numero2.camposComaFlotante.signo) && (C1 = 1)){
+        //st = OR(g,r,st);
+        //r = P0;
+        //Desplazar 1 bit a la derecha (c1,P);
+        //Ajustatar el exponente de la suma : eS = eS +1;
+    }else{
+        //Calcular el valor entero, k, de bits que es necesario desplazar P para que sea una mantisa normalizada
+
+        //if( k = 0){
+        //  st = OR(r, st);
+        //  r = g;
+        //}
+
+        //if( k >1){
+        //  r = 0;
+        //  st = 0;
+        //}
+
+        //Desplazar (P,g) a la izquierda k bits y ajustar el exponente de la suma: eS = eS - k;
+    }
+
+    //PASO 11
+    //if((r == 1 && st == 1) || (r == 1 && st == 0 && P0 == 1)){
+       // P = P+1;
+       // C2 = ACARREO;
+       // if(C2 = 1){
+            // Desplazar 1 bit a la derecha (C2,P),
+            // eS = eS +1;
+    //}
+    //mS = P;
+
+    //PASO 12
+    if(!operandos_Intercambiados && complementado_P){
+       //sS = numero2.camposComaFlotante.signo;
+    }else{
+        //sS = numero1.camposComaFlotante.signo;
+    }
+
+    //PASO 13
+    // suma = (sS)*mS*s^es
+
+
 }
 
 void MainWindow::on_botonResta_clicked()
@@ -261,15 +316,63 @@ void MainWindow::on_botonProducto_clicked()
 
     ui->lineEdit_7->setText(QString::number(multiplicacion));
 
+    union IEEE754 numero1;
+    numero1.num=num1;
+
+    union IEEE754 numero2;
+    numero2.num=num2;
+
+    cout<<"El signo del número 1: "<<numero1.camposComaFlotante.signo<<endl;
+    cout<<"El exponente del número 1: "<<numero1.camposComaFlotante.exponente<<endl;
+    cout<<"La mantisa del número 1 : "<<numero1.camposComaFlotante.mantisa<<endl;
+
+    cout<<"El signo del número 2: "<<numero2.camposComaFlotante.signo<<endl;
+    cout<<"El exponente del número 2: "<<numero2.camposComaFlotante.exponente<<endl;
+    cout<<"La mantisa del número 2 : "<<numero2.camposComaFlotante.mantisa<<endl;
+
+    cout<<"Inicializamos el algoritmo de la multiplicación: \n"<<endl;
+
+    //PASO 1
+    int signo;
+    signo = numero1.camposComaFlotante.signo * numero2.camposComaFlotante.signo;
+    cout<<"El signo del producto es: " << signo<< endl;
+
+    //PASO 2
+    int exponente;
+    exponente = numero1.camposComaFlotante.exponente + numero2.camposComaFlotante.exponente;
+    cout<<"El exponente del producto es: " << exponente<< endl;
+
+    //PASO 3
+    int mantisa;
+    int P = 0;
 }
 
 void MainWindow::on_botonDivision_clicked()
 {
+    union IEEE754 numero1;
+    numero1.num=num1;
+
+    union IEEE754 numero2;
+    numero2.num=num2;
+
+    cout<<"El signo del número 1: "<<numero1.camposComaFlotante.signo<<endl;
+    cout<<"El exponente del número 1: "<<numero1.camposComaFlotante.exponente<<endl;
+    cout<<"La mantisa del número 1 : "<<numero1.camposComaFlotante.mantisa<<endl;
+
+    cout<<"El signo del número 2: "<<numero2.camposComaFlotante.signo<<endl;
+    cout<<"El exponente del número 2: "<<numero2.camposComaFlotante.exponente<<endl;
+    cout<<"La mantisa del número 2 : "<<numero2.camposComaFlotante.mantisa<<endl;
+
+    cout<<"Inicializamos el algoritmo de la división: \n"<<endl;
+
+    //PASO 1
+
 
 }
 
 void MainWindow::on_restablecer_clicked()
 {
+    cout<< "DIME LOS NUEVOS NÚMEROS..."<<endl;
     ui->lineEdit->clear();
     ui->lineEdit_2->clear();
     ui->lineEdit_3->clear();
@@ -280,5 +383,6 @@ void MainWindow::on_restablecer_clicked()
 
 void MainWindow::on_salir_clicked()
 {
+    cout<< "¡HASTA LA PRÓXIMA!"<<endl;
     this->close();
 }

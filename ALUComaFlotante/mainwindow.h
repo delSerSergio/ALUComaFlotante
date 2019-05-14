@@ -54,18 +54,10 @@ private:
     double num1, num2, resultado;
     QString real1,real2;
 
-    //long numero1, numero2;
-    //IEEE754 numero1, numero2;
-
-    int P, g, r, st, n, e, d, m;
     bool operandosIntercambiados;
     bool complementadoP;
 
     int sig1, exp1, mant1;
-
-    int bitDeGuarda;
-    int bitDeRedondeo;
-    int bitSticky;
 
     string binario4="";
 
