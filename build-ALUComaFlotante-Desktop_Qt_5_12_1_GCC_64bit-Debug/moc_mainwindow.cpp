@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainWindow_t {
-    QByteArrayData data[9];
-    char stringdata0[175];
+    QByteArrayData data[12];
+    char stringdata0[198];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -34,17 +34,20 @@ static const qt_meta_stringdata_MainWindow_t qt_meta_stringdata_MainWindow = {
 QT_MOC_LITERAL(0, 0, 10), // "MainWindow"
 QT_MOC_LITERAL(1, 11, 29), // "on_transformarNumeros_clicked"
 QT_MOC_LITERAL(2, 41, 0), // ""
-QT_MOC_LITERAL(3, 42, 20), // "on_botonSuma_clicked"
-QT_MOC_LITERAL(4, 63, 21), // "on_botonResta_clicked"
-QT_MOC_LITERAL(5, 85, 24), // "on_botonProducto_clicked"
-QT_MOC_LITERAL(6, 110, 24), // "on_botonDivision_clicked"
-QT_MOC_LITERAL(7, 135, 22), // "on_restablecer_clicked"
-QT_MOC_LITERAL(8, 158, 16) // "on_salir_clicked"
+QT_MOC_LITERAL(3, 42, 11), // "pasoBinario"
+QT_MOC_LITERAL(4, 54, 6), // "string"
+QT_MOC_LITERAL(5, 61, 3), // "num"
+QT_MOC_LITERAL(6, 65, 20), // "on_botonSuma_clicked"
+QT_MOC_LITERAL(7, 86, 21), // "on_botonResta_clicked"
+QT_MOC_LITERAL(8, 108, 24), // "on_botonProducto_clicked"
+QT_MOC_LITERAL(9, 133, 24), // "on_botonDivision_clicked"
+QT_MOC_LITERAL(10, 158, 22), // "on_restablecer_clicked"
+QT_MOC_LITERAL(11, 181, 16) // "on_salir_clicked"
 
     },
     "MainWindow\0on_transformarNumeros_clicked\0"
-    "\0on_botonSuma_clicked\0on_botonResta_clicked\0"
-    "on_botonProducto_clicked\0"
+    "\0pasoBinario\0string\0num\0on_botonSuma_clicked\0"
+    "on_botonResta_clicked\0on_botonProducto_clicked\0"
     "on_botonDivision_clicked\0"
     "on_restablecer_clicked\0on_salir_clicked"
 };
@@ -56,7 +59,7 @@ static const uint qt_meta_data_MainWindow[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-       7,   14, // methods
+       8,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -64,16 +67,18 @@ static const uint qt_meta_data_MainWindow[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   49,    2, 0x08 /* Private */,
-       3,    0,   50,    2, 0x08 /* Private */,
-       4,    0,   51,    2, 0x08 /* Private */,
-       5,    0,   52,    2, 0x08 /* Private */,
-       6,    0,   53,    2, 0x08 /* Private */,
-       7,    0,   54,    2, 0x08 /* Private */,
-       8,    0,   55,    2, 0x08 /* Private */,
+       1,    0,   54,    2, 0x08 /* Private */,
+       3,    1,   55,    2, 0x08 /* Private */,
+       6,    0,   58,    2, 0x08 /* Private */,
+       7,    0,   59,    2, 0x08 /* Private */,
+       8,    0,   60,    2, 0x08 /* Private */,
+       9,    0,   61,    2, 0x08 /* Private */,
+      10,    0,   62,    2, 0x08 /* Private */,
+      11,    0,   63,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
+    0x80000000 | 4, QMetaType::Float,    5,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -91,16 +96,17 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->on_transformarNumeros_clicked(); break;
-        case 1: _t->on_botonSuma_clicked(); break;
-        case 2: _t->on_botonResta_clicked(); break;
-        case 3: _t->on_botonProducto_clicked(); break;
-        case 4: _t->on_botonDivision_clicked(); break;
-        case 5: _t->on_restablecer_clicked(); break;
-        case 6: _t->on_salir_clicked(); break;
+        case 1: { string _r = _t->pasoBinario((*reinterpret_cast< float(*)>(_a[1])));
+            if (_a[0]) *reinterpret_cast< string*>(_a[0]) = std::move(_r); }  break;
+        case 2: _t->on_botonSuma_clicked(); break;
+        case 3: _t->on_botonResta_clicked(); break;
+        case 4: _t->on_botonProducto_clicked(); break;
+        case 5: _t->on_botonDivision_clicked(); break;
+        case 6: _t->on_restablecer_clicked(); break;
+        case 7: _t->on_salir_clicked(); break;
         default: ;
         }
     }
-    Q_UNUSED(_a);
 }
 
 QT_INIT_METAOBJECT const QMetaObject MainWindow::staticMetaObject = { {
@@ -132,13 +138,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 7)
+        if (_id < 8)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 7;
+        _id -= 8;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 7)
+        if (_id < 8)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 7;
+        _id -= 8;
     }
     return _id;
 }

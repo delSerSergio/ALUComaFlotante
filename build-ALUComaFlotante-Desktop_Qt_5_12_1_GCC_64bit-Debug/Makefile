@@ -52,9 +52,11 @@ OBJECTS_DIR   = ./
 
 ####### Files
 
-SOURCES       = ../ALUComaFlotante/main.cpp \
+SOURCES       = ../ALUComaFlotante/alu.cpp \
+		../ALUComaFlotante/main.cpp \
 		../ALUComaFlotante/mainwindow.cpp moc_mainwindow.cpp
-OBJECTS       = main.o \
+OBJECTS       = alu.o \
+		main.o \
 		mainwindow.o \
 		moc_mainwindow.o
 DIST          = ../../../Qtbueno/5.12.1/gcc_64/mkspecs/features/spec_pre.prf \
@@ -208,6 +210,7 @@ DIST          = ../../../Qtbueno/5.12.1/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../Qtbueno/5.12.1/gcc_64/mkspecs/features/qt_config.prf \
 		../../../Qtbueno/5.12.1/gcc_64/mkspecs/linux-g++/qmake.conf \
 		../../../Qtbueno/5.12.1/gcc_64/mkspecs/features/spec_post.prf \
+		../ALUComaFlotante/.qmake.stash \
 		../../../Qtbueno/5.12.1/gcc_64/mkspecs/features/exclusive_builds.prf \
 		../../../Qtbueno/5.12.1/gcc_64/mkspecs/features/toolchain.prf \
 		../../../Qtbueno/5.12.1/gcc_64/mkspecs/features/default_pre.prf \
@@ -227,7 +230,9 @@ DIST          = ../../../Qtbueno/5.12.1/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../Qtbueno/5.12.1/gcc_64/mkspecs/features/exceptions.prf \
 		../../../Qtbueno/5.12.1/gcc_64/mkspecs/features/yacc.prf \
 		../../../Qtbueno/5.12.1/gcc_64/mkspecs/features/lex.prf \
-		../ALUComaFlotante/ALUComaFlotante.pro ../ALUComaFlotante/mainwindow.h ../ALUComaFlotante/main.cpp \
+		../ALUComaFlotante/ALUComaFlotante.pro ../ALUComaFlotante/alu.h \
+		../ALUComaFlotante/mainwindow.h ../ALUComaFlotante/alu.cpp \
+		../ALUComaFlotante/main.cpp \
 		../ALUComaFlotante/mainwindow.cpp
 QMAKE_TARGET  = ALUComaFlotante
 DESTDIR       = 
@@ -391,6 +396,7 @@ Makefile: ../ALUComaFlotante/ALUComaFlotante.pro ../../../Qtbueno/5.12.1/gcc_64/
 		../../../Qtbueno/5.12.1/gcc_64/mkspecs/features/qt_config.prf \
 		../../../Qtbueno/5.12.1/gcc_64/mkspecs/linux-g++/qmake.conf \
 		../../../Qtbueno/5.12.1/gcc_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		../../../Qtbueno/5.12.1/gcc_64/mkspecs/features/exclusive_builds.prf \
 		../../../Qtbueno/5.12.1/gcc_64/mkspecs/features/toolchain.prf \
 		../../../Qtbueno/5.12.1/gcc_64/mkspecs/features/default_pre.prf \
@@ -566,6 +572,7 @@ Makefile: ../ALUComaFlotante/ALUComaFlotante.pro ../../../Qtbueno/5.12.1/gcc_64/
 ../../../Qtbueno/5.12.1/gcc_64/mkspecs/features/qt_config.prf:
 ../../../Qtbueno/5.12.1/gcc_64/mkspecs/linux-g++/qmake.conf:
 ../../../Qtbueno/5.12.1/gcc_64/mkspecs/features/spec_post.prf:
+.qmake.stash:
 ../../../Qtbueno/5.12.1/gcc_64/mkspecs/features/exclusive_builds.prf:
 ../../../Qtbueno/5.12.1/gcc_64/mkspecs/features/toolchain.prf:
 ../../../Qtbueno/5.12.1/gcc_64/mkspecs/features/default_pre.prf:
@@ -604,8 +611,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../../../Qtbueno/5.12.1/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../ALUComaFlotante/mainwindow.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../ALUComaFlotante/main.cpp ../ALUComaFlotante/mainwindow.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../ALUComaFlotante/alu.h ../ALUComaFlotante/mainwindow.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../ALUComaFlotante/alu.cpp ../ALUComaFlotante/main.cpp ../ALUComaFlotante/mainwindow.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../ALUComaFlotante/mainwindow.ui $(DISTDIR)/
 
 
@@ -748,6 +755,7 @@ moc_mainwindow.cpp: ../ALUComaFlotante/mainwindow.h \
 		../../../Qtbueno/5.12.1/gcc_64/include/QtGui/qtouchdevice.h \
 		../../../Qtbueno/5.12.1/gcc_64/include/QtWidgets/qtabwidget.h \
 		../../../Qtbueno/5.12.1/gcc_64/include/QtGui/qicon.h \
+		../ALUComaFlotante/alu.h \
 		moc_predefs.h \
 		../../../Qtbueno/5.12.1/gcc_64/bin/moc
 	/home/tania/Qtbueno/5.12.1/gcc_64/bin/moc $(DEFINES) --include /home/tania/Escritorio/ALUComaFlotante/build-ALUComaFlotante-Desktop_Qt_5_12_1_GCC_64bit-Debug/moc_predefs.h -I/home/tania/Qtbueno/5.12.1/gcc_64/mkspecs/linux-g++ -I/home/tania/Escritorio/ALUComaFlotante/ALUComaFlotante -I/home/tania/Qtbueno/5.12.1/gcc_64/include -I/home/tania/Qtbueno/5.12.1/gcc_64/include/QtWidgets -I/home/tania/Qtbueno/5.12.1/gcc_64/include/QtGui -I/home/tania/Qtbueno/5.12.1/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../ALUComaFlotante/mainwindow.h -o moc_mainwindow.cpp
@@ -772,6 +780,9 @@ compiler_lex_clean:
 compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_uic_clean 
 
 ####### Compile
+
+alu.o: ../ALUComaFlotante/alu.cpp ../ALUComaFlotante/alu.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o alu.o ../ALUComaFlotante/alu.cpp
 
 main.o: ../ALUComaFlotante/main.cpp ../ALUComaFlotante/mainwindow.h \
 		../../../Qtbueno/5.12.1/gcc_64/include/QtWidgets/QMainWindow \
@@ -880,6 +891,7 @@ main.o: ../ALUComaFlotante/main.cpp ../ALUComaFlotante/mainwindow.h \
 		../../../Qtbueno/5.12.1/gcc_64/include/QtGui/qtouchdevice.h \
 		../../../Qtbueno/5.12.1/gcc_64/include/QtWidgets/qtabwidget.h \
 		../../../Qtbueno/5.12.1/gcc_64/include/QtGui/qicon.h \
+		../ALUComaFlotante/alu.h \
 		../../../Qtbueno/5.12.1/gcc_64/include/QtWidgets/QApplication \
 		../../../Qtbueno/5.12.1/gcc_64/include/QtWidgets/qapplication.h \
 		../../../Qtbueno/5.12.1/gcc_64/include/QtCore/qcoreapplication.h \
@@ -996,14 +1008,38 @@ mainwindow.o: ../ALUComaFlotante/mainwindow.cpp ../ALUComaFlotante/mainwindow.h 
 		../../../Qtbueno/5.12.1/gcc_64/include/QtGui/qtouchdevice.h \
 		../../../Qtbueno/5.12.1/gcc_64/include/QtWidgets/qtabwidget.h \
 		../../../Qtbueno/5.12.1/gcc_64/include/QtGui/qicon.h \
+		../ALUComaFlotante/alu.h \
 		ui_mainwindow.h \
+		../../../Qtbueno/5.12.1/gcc_64/include/QtCore/QVariant \
+		../../../Qtbueno/5.12.1/gcc_64/include/QtWidgets/QApplication \
+		../../../Qtbueno/5.12.1/gcc_64/include/QtWidgets/qapplication.h \
+		../../../Qtbueno/5.12.1/gcc_64/include/QtCore/qcoreapplication.h \
+		../../../Qtbueno/5.12.1/gcc_64/include/QtCore/qeventloop.h \
+		../../../Qtbueno/5.12.1/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		../../../Qtbueno/5.12.1/gcc_64/include/QtGui/qguiapplication.h \
+		../../../Qtbueno/5.12.1/gcc_64/include/QtGui/qinputmethod.h \
+		../../../Qtbueno/5.12.1/gcc_64/include/QtWidgets/QLabel \
+		../../../Qtbueno/5.12.1/gcc_64/include/QtWidgets/qlabel.h \
+		../../../Qtbueno/5.12.1/gcc_64/include/QtWidgets/qframe.h \
 		../../../Qtbueno/5.12.1/gcc_64/include/QtWidgets/QLineEdit \
 		../../../Qtbueno/5.12.1/gcc_64/include/QtWidgets/qlineedit.h \
-		../../../Qtbueno/5.12.1/gcc_64/include/QtWidgets/qframe.h \
 		../../../Qtbueno/5.12.1/gcc_64/include/QtGui/qtextcursor.h \
 		../../../Qtbueno/5.12.1/gcc_64/include/QtGui/qtextformat.h \
 		../../../Qtbueno/5.12.1/gcc_64/include/QtGui/qpen.h \
-		../../../Qtbueno/5.12.1/gcc_64/include/QtGui/qtextoption.h
+		../../../Qtbueno/5.12.1/gcc_64/include/QtGui/qtextoption.h \
+		../../../Qtbueno/5.12.1/gcc_64/include/QtWidgets/QMenuBar \
+		../../../Qtbueno/5.12.1/gcc_64/include/QtWidgets/qmenubar.h \
+		../../../Qtbueno/5.12.1/gcc_64/include/QtWidgets/qmenu.h \
+		../../../Qtbueno/5.12.1/gcc_64/include/QtWidgets/qaction.h \
+		../../../Qtbueno/5.12.1/gcc_64/include/QtWidgets/qactiongroup.h \
+		../../../Qtbueno/5.12.1/gcc_64/include/QtWidgets/QPushButton \
+		../../../Qtbueno/5.12.1/gcc_64/include/QtWidgets/qpushbutton.h \
+		../../../Qtbueno/5.12.1/gcc_64/include/QtWidgets/qabstractbutton.h \
+		../../../Qtbueno/5.12.1/gcc_64/include/QtWidgets/QStatusBar \
+		../../../Qtbueno/5.12.1/gcc_64/include/QtWidgets/qstatusbar.h \
+		../../../Qtbueno/5.12.1/gcc_64/include/QtWidgets/QToolBar \
+		../../../Qtbueno/5.12.1/gcc_64/include/QtWidgets/qtoolbar.h \
+		../../../Qtbueno/5.12.1/gcc_64/include/QtWidgets/QWidget
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../ALUComaFlotante/mainwindow.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
