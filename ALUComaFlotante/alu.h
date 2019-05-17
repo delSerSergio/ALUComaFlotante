@@ -15,6 +15,8 @@ public:
     ~ALU();
 
     void tipoOperacion();
+    string complemento2(string mantisa);
+    string desplazarDerecha(string mantisa, int posicion, int digito);
 
 private:
 

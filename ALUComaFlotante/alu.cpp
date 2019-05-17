@@ -1,5 +1,6 @@
 #include "alu.h"
 #include "bitset"
+#include "string.h"
 
 ALU::ALU()
 {
@@ -48,6 +49,10 @@ float ALU::funcionSuma()
         numero1=numero2;
         numero1=aux;
 
+        cout<<"Se intercambian los numeros."<<endl;
+        cout<<"Numero 1: "<<numero1<<endl;
+        cout<<"Numero 2: "<<numero2<<endl;
+
         operandosIntercambiados=true;
     }
 
@@ -57,22 +62,32 @@ float ALU::funcionSuma()
 
     if(numero1->getSigno()!=numero2->getSigno())
     {
-        int m;
+        cout<<"Empezamos a realizar el complemento 2 del numero 2."<<endl;
+
+        string m;
         m=complemento2(numero2->getMantisa());
+
+        cout<<"La mantisa es: "<<numero2->getMantisa()<<endl;
+        cout<<"La mantisa cambiada es: "<<m<<endl;
     }
 
-    P=m;
+    //P=m;
 
     int bitDeGuarda, bitDeRedondeo, bitSticky;
 
     if(numero1->getSigno()!=numero2->getSigno())
     {
-
+        string pDesplazado;
+        pDesplazado=desplazarDerecha(numero2->getMantisa(), d, 1);
     }
     else
     {
-
+        string pDesplazado;
+        pDesplazado=desplazarDerecha(numero2->getMantisa(), d, 0);
     }
+
+    //P=numero1->getMantisa()+pDesplazado;
+
 }
 
 float ALU::funcionMultiplicacion(){
@@ -81,4 +96,52 @@ float ALU::funcionMultiplicacion(){
 
 float ALU::funcionDivision(){
 
+}
+
+string ALU::complemento2(string mantisa)
+{
+
+    string mantisaNueva;
+    int i;
+    bool cambio=false;
+
+    for(i=mantisa.size();i=0;i--)
+    {
+        if(cambio==false)
+        {
+            if(mantisa.at(i)==1)
+            {
+                mantisaNueva='1'+mantisaNueva;
+                cambio=true;
+            }
+            else if(mantisa.at(i)==0)
+            {
+               mantisaNueva='0'+mantisaNueva;
+            }
+        }
+        else
+        {
+            if(mantisa.at(i)==1)
+            {
+                mantisaNueva='0'+mantisaNueva;
+            }
+            else if(mantisa.at(i)==0)
+            {
+                mantisaNueva='1'+mantisaNueva;
+            }
+        }
+    }
+    return mantisaNueva;
+}
+
+string ALU::desplazarDerecha(string mantisa, int posiciones, int digito)
+{
+    int i, j;
+    for(i=0;i<posiciones;i++)
+    {
+        for(j=0;mantisa.size();j++)
+        {
+
+        }
+    }
 }
