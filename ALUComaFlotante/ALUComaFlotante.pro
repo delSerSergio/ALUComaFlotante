@@ -27,11 +27,13 @@ CONFIG += c++11
 SOURCES += \
         alu.cpp \
         main.cpp \
-        mainwindow.cpp
+        mainwindow.cpp \
+    num.cpp
 
 HEADERS += \
         alu.h \
-        mainwindow.h
+        mainwindow.h \
+    num.h
 
 FORMS += \
         mainwindow.ui

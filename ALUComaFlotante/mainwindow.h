@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <alu.h>
+#include "num.h"
 #include <bitset>
 
 using namespace std;
@@ -24,7 +25,7 @@ public:
 private slots:
 
     void on_transformarNumeros_clicked();
-    string pasoBinario(float num);
+    string pasoBinario(float numero);
     void on_botonSuma_clicked();
     void on_botonResta_clicked();
     void on_botonProducto_clicked();
@@ -35,10 +36,11 @@ private slots:
 private:
     Ui::MainWindow *ui;
 
-    string op;
+    float numero1, numero2, resultado;
+    QString real1, real2;
 
-    float num1, num2, resultado;
-    QString real1,real2;
+    num *num1, *num2;
+    string op;
 
 };
 

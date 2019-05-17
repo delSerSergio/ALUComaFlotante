@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <unistd.h>
 
+
 using namespace std;
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -24,10 +25,10 @@ void MainWindow::on_transformarNumeros_clicked()
 {
     //LEEMOS EL PRIMER NUMERO
     real1 = ui->lineEdit->text();
-    num1 = real1.toFloat();
+    numero1 = real1.toFloat();
 
     //LO PASAMOS A BINARIO
-    string binario1 = pasoBinario(num1);
+    string binario1 = pasoBinario(numero1);
 
     //MOSTRAMOS EL SIGNO POR LA INTERFAZ
     string signo = "";
@@ -53,10 +54,10 @@ void MainWindow::on_transformarNumeros_clicked()
 
     //LEEMOS EL SEGUNDO NUMERO
     real2 = ui->lineEdit_2->text();
-    num2 = real2.toFloat();
+    numero2 = real2.toFloat();
 
     //LO PASAMOS A BINARIO
-    string binario2 = pasoBinario(num2);
+    string binario2 = pasoBinario(numero2);
 
     //MOSTRAMOS EL SIGNO POR LA INTERFAZ
     string signo2 = "";
@@ -101,6 +102,9 @@ void MainWindow::on_botonSuma_clicked()
 {
     cout<< "Ha seleccionado la opción de sumar."<<endl;
     op = "Suma";
+
+    ALU *calcular=new ALU(num1, num2, op);
+    calcular->tipoOperacion();
 }
 
 void MainWindow::on_botonResta_clicked()

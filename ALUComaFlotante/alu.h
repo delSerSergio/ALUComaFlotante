@@ -1,6 +1,7 @@
 #ifndef ALU_H
 #define ALU_H
 
+#include "num.h"
 #include "string.h"
 #include <iostream>
 
@@ -10,18 +11,21 @@ class ALU
 {
 public:
     ALU();
+    ALU(num *num1, num *num2, string op);
+    ~ALU();
 
+    void tipoOperacion();
 
 private:
 
     //FUNCIONES
-    void tipoOperacion();
     float funcionSuma();
     float funcionMultiplicacion();
     float funcionDivision();
 
     //VARIABLES
-    string op;
+    num *numero1, *numero2;
+    string operacion;
 };
 
 #endif // ALU_H
