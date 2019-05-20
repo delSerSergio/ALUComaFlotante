@@ -22,7 +22,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainWindow_t {
     QByteArrayData data[12];
-    char stringdata0[198];
+    char stringdata0[201];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -36,18 +36,19 @@ QT_MOC_LITERAL(1, 11, 29), // "on_transformarNumeros_clicked"
 QT_MOC_LITERAL(2, 41, 0), // ""
 QT_MOC_LITERAL(3, 42, 11), // "pasoBinario"
 QT_MOC_LITERAL(4, 54, 6), // "string"
-QT_MOC_LITERAL(5, 61, 3), // "num"
-QT_MOC_LITERAL(6, 65, 20), // "on_botonSuma_clicked"
-QT_MOC_LITERAL(7, 86, 21), // "on_botonResta_clicked"
-QT_MOC_LITERAL(8, 108, 24), // "on_botonProducto_clicked"
-QT_MOC_LITERAL(9, 133, 24), // "on_botonDivision_clicked"
-QT_MOC_LITERAL(10, 158, 22), // "on_restablecer_clicked"
-QT_MOC_LITERAL(11, 181, 16) // "on_salir_clicked"
+QT_MOC_LITERAL(5, 61, 6), // "numero"
+QT_MOC_LITERAL(6, 68, 20), // "on_botonSuma_clicked"
+QT_MOC_LITERAL(7, 89, 21), // "on_botonResta_clicked"
+QT_MOC_LITERAL(8, 111, 24), // "on_botonProducto_clicked"
+QT_MOC_LITERAL(9, 136, 24), // "on_botonDivision_clicked"
+QT_MOC_LITERAL(10, 161, 22), // "on_restablecer_clicked"
+QT_MOC_LITERAL(11, 184, 16) // "on_salir_clicked"
 
     },
     "MainWindow\0on_transformarNumeros_clicked\0"
-    "\0pasoBinario\0string\0num\0on_botonSuma_clicked\0"
-    "on_botonResta_clicked\0on_botonProducto_clicked\0"
+    "\0pasoBinario\0string\0numero\0"
+    "on_botonSuma_clicked\0on_botonResta_clicked\0"
+    "on_botonProducto_clicked\0"
     "on_botonDivision_clicked\0"
     "on_restablecer_clicked\0on_salir_clicked"
 };

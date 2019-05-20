@@ -1,6 +1,7 @@
 #include "alu.h"
 #include "bitset"
 #include "string.h"
+#include "stdlib.h"
 
 ALU::ALU()
 {
@@ -41,12 +42,16 @@ float ALU::funcionSuma()
 {
     cout<<"Comenzamos con la inicialización de las variables: "<<endl;
 
+    //PASO 1
+    int P = 0;
+    int g =0, r = 0, st = 0;
     int n;
-    string m, P, g, r, st;
     n=numero1->getMantisa().size();
+    // string m, P, g, r, st;
     bool operandosIntercambiados=false;
     bool complementoP=false;
 
+    //PASO 2
     if(numero1->getExponente()<numero2->getExponente())
     {
         num *aux;
@@ -61,10 +66,13 @@ float ALU::funcionSuma()
         operandosIntercambiados=true;
     }
 
+    //PASO 3
     int d;
     int expSol=numero1->getExponente();
     d=numero1->getExponente()-numero2->getExponente();
 
+    //PASO 4
+    string m;
     if(numero1->getSigno()!=numero2->getSigno())
     {
         cout<<"Empezamos a realizar el complemento 2 del numero 2."<<endl;
@@ -75,45 +83,54 @@ float ALU::funcionSuma()
         cout<<"La mantisa cambiada es: "<<m<<endl;
     }
 
-    P=m;
-    g=P.substr(0,23);
-    r=P.substr(1,23);
-    st=OR(P.substr(2,23));
+    //PASO 5
+    P = atoi(numero2->getMantisa().c_str());
 
+    //PASO 6
+    string G = std::to_string(g);
+    string p = std::to_string(P);
+    string R = std::to_string(r);
+    G=p.substr(0,23);
+    R=p.substr(1,23);
+    st=OR(p.substr(2,23));
 
+    //PASO 7
     if(numero1->getSigno()!=numero2->getSigno())
     {
-        P=desplazarDerecha(numero2->getMantisa(), d, 1);
+        p=desplazarDerecha(numero2->getMantisa(), d, 1);
     }
     else
     {
-        P=desplazarDerecha(numero2->getMantisa(), d, 0);
+        p=desplazarDerecha(numero2->getMantisa(), d, 0);
     }
 
-    string Pac=sumaBinaria(P,numero1->getMantisa());
+    //PASO 8
+    string Pac=sumaBinaria(p,numero1->getMantisa());
     int acarreo=atoi(Pac.substr(0,1).c_str());
-    P=Pac.substr(1,24);
+    p=Pac.substr(1,24);
 
+    //PASO 9
     if((numero1->getSigno()!=numero2->getSigno())&&(P=1)&&(acarreo=0)||d==0)
     {
-           P=complemento2(P);
+           p=complemento2(p);
            complementoP=true;
     }
 
+    //PASO 10
     if((numero1->getSigno()==numero2->getSigno())&&(acarreo=1))
     {
         //st=r||g||st;
         //st=OR(g,r,st);
-        r=P.substr(0);
-        P=desplazarDerecha(P,1,acarreo);
+        R=p.substr(0);
+        p=desplazarDerecha(p,1,acarreo);
         //expSol=
     }
     else
     {
-       int k=normalizar(P);
+       int k=normalizar(p);
        if(k=0)
        {
-           st=OR(r,st);
+           //st=OR(r,st);
            r=g;
        }
        else if(k>1)
@@ -122,22 +139,22 @@ float ALU::funcionSuma()
            st=0;
        }
 
-       P=desplazarDerecha(P,k,g);
+       p=desplazarDerecha(p,k,g);
 
        //expSol=
     }
 
     //COMENZAMOS EL REDONDEO.
-    if((r==1 && st==1)||(r==1 && st==0 && P.at(p.length()-1)))
+    if((r==1 && st==1)||(r==1 && st==0 && p.at(p.length()-1)))
     {
-        string nuevaCadena=sumaBinaria(P,"1");
+        string nuevaCadena=sumaBinaria(p,"1");
         int acarreo1=atoi(nuevaCadena.substr(0,1).c_str());
 
-        P=nuevaCadena.substr(1,24);
+        p=nuevaCadena.substr(1,24);
 
         if(acarreo1==1)
         {
-            P=desplazarDerecha(p,1,acarreo1);
+            p=desplazarDerecha(p,1,acarreo1);
             //No se si la variable es esta.
             //expSol=
         }
