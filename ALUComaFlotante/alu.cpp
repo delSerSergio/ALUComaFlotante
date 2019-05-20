@@ -22,7 +22,9 @@ ALU::~ALU()
 void ALU::tipoOperacion(){
 
     if(operacion == "Suma"){
+        cout<<"La función suma ha sido empezada."<<endl;
         funcionSuma();
+
     }
     if(operacion == "Resta"){
         funcionSuma();
@@ -37,7 +39,10 @@ void ALU::tipoOperacion(){
 
 float ALU::funcionSuma()
 {
-    int P=0, g=0, r=0, st=0, n;
+    cout<<"Comenzamos con la inicialización de las variables: "<<endl;
+
+    int n;
+    string m, P, g, r, st;
     n=numero1->getMantisa().size();
     bool operandosIntercambiados=false;
     bool complementoP=false;
@@ -46,7 +51,7 @@ float ALU::funcionSuma()
     {
         num *aux;
         aux=numero2;
-        numero1=numero2;
+        numero2=numero1;
         numero1=aux;
 
         cout<<"Se intercambian los numeros."<<endl;
@@ -56,37 +61,88 @@ float ALU::funcionSuma()
         operandosIntercambiados=true;
     }
 
-    int expSol, d;
-    expSol=numero1->getExponente();
+    int d;
+    int expSol=numero1->getExponente();
     d=numero1->getExponente()-numero2->getExponente();
 
     if(numero1->getSigno()!=numero2->getSigno())
     {
         cout<<"Empezamos a realizar el complemento 2 del numero 2."<<endl;
 
-        string m;
         m=complemento2(numero2->getMantisa());
 
         cout<<"La mantisa es: "<<numero2->getMantisa()<<endl;
         cout<<"La mantisa cambiada es: "<<m<<endl;
     }
 
-    //P=m;
+    P=m;
+    g=P.substr(0,23);
+    r=P.substr(1,23);
+    st=OR(P.substr(2,23));
 
-    int bitDeGuarda, bitDeRedondeo, bitSticky;
 
     if(numero1->getSigno()!=numero2->getSigno())
     {
-        string pDesplazado;
-        pDesplazado=desplazarDerecha(numero2->getMantisa(), d, 1);
+        P=desplazarDerecha(numero2->getMantisa(), d, 1);
     }
     else
     {
-        string pDesplazado;
-        pDesplazado=desplazarDerecha(numero2->getMantisa(), d, 0);
+        P=desplazarDerecha(numero2->getMantisa(), d, 0);
     }
 
-    //P=numero1->getMantisa()+pDesplazado;
+    string Pac=sumaBinaria(P,numero1->getMantisa());
+    int acarreo=atoi(Pac.substr(0,1).c_str());
+    P=Pac.substr(1,24);
+
+    if((numero1->getSigno()!=numero2->getSigno())&&(P=1)&&(acarreo=0)||d==0)
+    {
+           P=complemento2(P);
+           complementoP=true;
+    }
+
+    if((numero1->getSigno()==numero2->getSigno())&&(acarreo=1))
+    {
+        //st=r||g||st;
+        //st=OR(g,r,st);
+        r=P.substr(0);
+        P=desplazarDerecha(P,1,acarreo);
+        //expSol=
+    }
+    else
+    {
+       int k=normalizar(P);
+       if(k=0)
+       {
+           st=OR(r,st);
+           r=g;
+       }
+       else if(k>1)
+       {
+           r=0;
+           st=0;
+       }
+
+       P=desplazarDerecha(P,k,g);
+
+       //expSol=
+    }
+
+    //COMENZAMOS EL REDONDEO.
+    if((r==1 && st==1)||(r==1 && st==0 && P.at(p.length()-1)))
+    {
+        string nuevaCadena=sumaBinaria(P,"1");
+        int acarreo1=atoi(nuevaCadena.substr(0,1).c_str());
+
+        P=nuevaCadena.substr(1,24);
+
+        if(acarreo1==1)
+        {
+            P=desplazarDerecha(p,1,acarreo1);
+            //No se si la variable es esta.
+            //expSol=
+        }
+    }
+
 
 }
 
@@ -100,7 +156,6 @@ float ALU::funcionDivision(){
 
 string ALU::complemento2(string mantisa)
 {
-
     string mantisaNueva;
     int i;
     bool cambio=false;
@@ -136,12 +191,141 @@ string ALU::complemento2(string mantisa)
 
 string ALU::desplazarDerecha(string mantisa, int posiciones, int digito)
 {
+    //No tengo ni idea de lo que es.
+    std:bitset<24> mantisaNueva{mantisa};
     int i, j;
+    /*
     for(i=0;i<posiciones;i++)
     {
-        for(j=0;mantisa.size();j++)
+        for(j=mantisa.size();j>0;j++)
         {
+            if(j==0)
+            {
+                mantisa[j]=digito;
+            }
+            else
+            {
+                mantisa[j]=mantisa[j-1];
+            }
+        }
+    }
+    */
 
+    for(i=0;i<posiciones;i++)
+    {
+        for(j=mantisaNueva.size();j>=0;j++)
+        {
+            if(j==0)
+            {
+                mantisaNueva[j]=digito;
+            }
+            else
+            {
+                mantisaNueva[j]=mantisaNueva[j-1];
+            }
+        }
+    }
+    //No tengo ni idea de lo que es.
+    std::string nuevaCadena=mantisaNueva.to_string<char, std::char_traits<char>, std::allocator<char> >();
+}
+
+int ALU::OR(string mantisa)
+{
+    int i, contador0=0, contador1=0;
+
+    if(mantisa.length()==1)
+    {
+        return atoi(mantisa.c_str());
+    }
+    else
+    {
+        for(i=0;i<mantisa.size();i++)
+        {
+            if(mantisa[i]=='1')
+            {
+                contador0=contador0+1;
+            }
+            else
+            {
+                contador1=contador1+1;
+            }
+        }
+
+        if(contador0!=mantisa.size())
+        {
+            return 1;
+        }
+        else
+        {
+            return 0;
         }
     }
 }
+
+string ALU::sumaBinaria(string parametro1, string parametro2)
+{
+    int i, anadir, acarreo;
+    string nuevaCadena;
+
+    if(parametro1.length()<parametro2.length())
+    {
+        anadir=parametro1.length()-parametro2.length();
+        for(i=0;i<anadir;i++)
+        {
+            parametro1='0'+parametro1;
+        }
+    }
+
+    if(parametro2.length()<parametro2.length())
+    {
+        anadir=parametro2.length()-parametro1.length();
+        for(i=0;i<anadir;i++)
+        {
+            parametro2='0'+parametro2;
+        }
+    }
+
+    for(i=parametro1.length();i>=0;i--)
+    {
+        //No tengo ni idea de lo que es esto.
+        int aux=(parametro1.at(i)-48)+(parametro2.at(i)-48);
+
+        if(aux+acarreo==0){
+            nuevaCadena="0"+ nuevaCadena;
+            acarreo=0;
+        }
+        else if(aux+acarreo==1){
+            nuevaCadena="1"+nuevaCadena;
+            acarreo=0;
+        }
+        else if(aux+acarreo==2){
+            nuevaCadena="0"+nuevaCadena;
+            acarreo=1;
+        }
+        else{
+            nuevaCadena="1"+nuevaCadena;
+            acarreo=1;
+        }
+    }
+
+    nuevaCadena=std::to_string(acarreo)+" "+nuevaCadena;
+    return nuevaCadena;
+}
+
+int ALU::normalizar(string parametro)
+{
+    int i, contador;
+    for(i=0;i<parametro.length();i++)
+    {
+        if(parametro.at(i)=='1')
+        {
+            //No creo que esté bien.
+            contador=i;
+        }
+    }
+    return contador;
+}
+
+
+
+
